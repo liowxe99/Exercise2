@@ -3,10 +3,7 @@ package com.example.exwecise2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +12,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById<Button>(R.id.buttonCalculate).setOnClickListener{
-            calculateBMI(it)
+            val weight = findViewById<EditText>(R.id.editTextWeight)
+            val height = findViewById<EditText>(R.id.editTextHeight)
+            if (weight.text.toString().isNotEmpty()&&height.text.toString().isNotEmpty()){
+                calculateBMI(it)
+            }else{
+                Toast.makeText(this, R.string.input_error, Toast.LENGTH_SHORT).show()
+            }
         }
         findViewById<Button>(R.id.buttonReset).setOnClickListener{
             clearScreen(it)
